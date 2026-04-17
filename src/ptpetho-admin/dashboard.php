@@ -15,6 +15,15 @@ $recentFeedback = getFeedbackList();
 $recentFeedback = array_slice($recentFeedback, 0, 5);
 ?>
 
+<!-- FLAG 3 Display - SQLi Filter Bypass -->
+<?php if (!empty($_SESSION['sqli_bypass'])): ?>
+<div class="alert alert-success" style="margin-bottom: 1.5rem;">
+    <strong>🚩 FLAG 3: FLAG{f1lt3r_byp4ss_succ3ss}</strong>
+    <p style="margin: 0.5rem 0 0;">Congratulations! You bypassed the login filter using SQL injection.</p>
+</div>
+<?php unset($_SESSION['sqli_bypass']); ?>
+<?php endif; ?>
+
 <!-- Page Header -->
 <div class="content-header">
     <h1>Dashboard</h1>

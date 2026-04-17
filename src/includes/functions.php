@@ -118,6 +118,12 @@ function authenticateUser($username, $password) {
         $_SESSION['role'] = $user['role'];
         $_SESSION['full_name'] = $user['full_name'];
 
+        // Check if login was achieved via SQLi (Challenge 7 - FLAG 3)
+        // Detect if username contains SQL injection patterns
+        if (preg_match("/['\"]|OR\s+\d|\/\*/i", $username)) {
+            $_SESSION['sqli_bypass'] = true;
+        }
+
         // Update last login
         $db->query("UPDATE users SET last_login = NOW() WHERE id = " . $user['id']);
 
