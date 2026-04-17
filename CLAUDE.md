@@ -319,48 +319,48 @@ volumes:
 ## TODO - Implementation Checklist
 
 ### Setup & Config
-- [ ] Create docker-compose.yml
-- [ ] Create Dockerfile (PHP 8.1 + Apache)
-- [ ] Create .gitignore
-- [ ] Create .env.example
-- [ ] Create README.md with setup instructions
+- [x] Create docker-compose.yml
+- [x] Create Dockerfile (PHP 8.1 + Apache)
+- [x] Create .gitignore
+- [x] Create .env.example
+- [x] Create README.md with setup instructions
 
 ### Database
-- [ ] Create init.sql with all tables
-- [ ] Insert seed data (users, staff, fuel costs)
+- [x] Create init.sql with all tables
+- [x] Insert seed data (users, staff, fuel costs)
 - [ ] Test database connection
 
 ### Public Pages
-- [ ] index.php - Homepage with hidden comments
-- [ ] upgrade.php - Tier upgrade form
-- [ ] verify.php - QA verification page
-- [ ] api/internal/config.json - Exposed config
+- [x] index.php - Homepage with hidden comments
+- [x] upgrade.php - Tier upgrade form
+- [x] verify.php - QA verification page
+- [x] api/internal/config.json - Exposed config
 
 ### Admin Portal
-- [ ] ptpetho-admin/index.php - Login with vulnerabilities
-- [ ] ptpetho-admin/dashboard.php - Admin dashboard with charts
-- [ ] ptpetho-admin/search.php - Staff search (SQLi)
-- [ ] ptpetho-admin/feedback.php - Feedback form (XSS)
-- [ ] ptpetho-admin/feedback-view.php - View feedback
-- [ ] ptpetho-admin/fuel-cost.php - CEO-only page
+- [x] ptpetho-admin/index.php - Login with vulnerabilities
+- [x] ptpetho-admin/dashboard.php - Admin dashboard with charts
+- [x] ptpetho-admin/search.php - Staff search (SQLi)
+- [x] ptpetho-admin/feedback.php - Feedback form (XSS)
+- [x] ptpetho-admin/feedback-view.php - View feedback
+- [x] ptpetho-admin/fuel-cost.php - CEO-only page
 
 ### Assets
-- [ ] assets/css/style.css - Main styles
-- [ ] assets/css/admin.css - Admin styles
-- [ ] assets/js/main.js - Public JS
-- [ ] assets/js/admin.js - Admin JS (Chart.js)
-- [ ] assets/img/logo.png - PTPetho logo
+- [x] assets/css/style.css - Main styles
+- [x] assets/css/admin.css - Admin styles
+- [x] assets/js/main.js - Public JS
+- [x] assets/js/admin.js - Admin JS (Chart.js)
+- [ ] assets/img/logo.png - PTPetho logo (placeholder needed)
 
 ### Includes
-- [ ] includes/config.php - DB connection
-- [ ] includes/functions.php - Helper functions
-- [ ] includes/header.php - Public header
-- [ ] includes/footer.php - Public footer
-- [ ] includes/admin-header.php - Admin header
-- [ ] includes/admin-sidebar.php - Admin sidebar
+- [x] includes/config.php - DB connection
+- [x] includes/functions.php - Helper functions
+- [x] includes/header.php - Public header
+- [x] includes/footer.php - Public footer
+- [x] includes/admin-header.php - Admin header
+- [x] includes/admin-sidebar.php - Admin sidebar
 
 ### Cookie Logger
-- [ ] logger/index.php - Simple request logger
+- [x] logger/index.php - Simple request logger
 
 ### Documentation
 - [ ] docs/CHALLENGES.md - Instructor walkthrough
