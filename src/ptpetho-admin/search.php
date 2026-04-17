@@ -21,9 +21,13 @@ if (!empty($searchTerm)) {
     // Check if superadmin credentials were extracted (for FLAG 2)
     if ($searchResult['success'] && !empty($searchResult['data'])) {
         foreach ($searchResult['data'] as $row) {
-            // Check if password hash is visible (indicates successful SQLi)
-            if (isset($row['password_hash']) || isset($row['password'])) {
-                $showFlag = true;
+            foreach ($row as $value) {
+                // Check if any value looks like an MD5 hash (32 hex chars)
+                // This detects successful UNION-based extraction of password hashes
+                if (is_string($value) && preg_match('/^[a-f0-9]{32}$/i', $value)) {
+                    $showFlag = true;
+                    break 2;
+                }
             }
         }
     }
