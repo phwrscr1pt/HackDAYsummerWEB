@@ -35,9 +35,77 @@ Students play as a pentest team helping journalist "Chonticha Wongsuwan" uncover
 ## Deployment
 
 - **Server:** HPE ProLiant Gen 9
-- **OS:** Ubuntu (VM)
+- **OS:** Ubuntu 22.04 Desktop (Proxmox VM)
 - **Method:** Docker containers
-- **Repository:** GitHub → git clone → docker-compose up
+- **Repository:** https://github.com/phwrscr1pt/HackDAYsummerWEB.git
+
+### Lab VM Details
+
+| Item | Value |
+|------|-------|
+| VM Name | `hackdayweb` |
+| VM IP | `10.10.61.146` |
+| VM User | `asdf` |
+| SSH Auth | SSH Key (no password) |
+
+### Network Topology
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              INTERNET                                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ Tailscale VPN
+                                    ▼
+┌─────────────────────┐      ┌─────────────────────┐      ┌─────────────────────┐
+│   Claude's Machine  │      │    Jump Host        │      │     Lab VM          │
+│   (Windows)         │ ───► │    (root-agent)     │ ───► │     (hackdayweb)    │
+│                     │      │                     │      │                     │
+│   Can reach:        │ SSH  │   IP: 100.107.182.15│ SSH  │   IP: 10.10.61.146  │
+│   - Tailscale IPs   │      │   User: root-agent  │      │   User: asdf        │
+│   - Internet        │      │                     │      │                     │
+│                     │      │   Can reach:        │      │   Services:         │
+│   Cannot reach:     │      │   - 10.10.61.x LAN  │      │   - Web: port 80    │
+│   - 10.10.61.x LAN  │      │   - Internet        │      │   - Logger: 8000    │
+│                     │      │   - Tailscale       │      │   - MySQL: 3306     │
+└─────────────────────┘      └─────────────────────┘      └─────────────────────┘
+```
+
+### SSH Access
+
+```bash
+# Direct command (via jump host)
+ssh -J root-agent@100.107.182.15 asdf@10.10.61.146
+
+# Run command on lab VM
+ssh -J root-agent@100.107.182.15 asdf@10.10.61.146 "docker-compose ps"
+
+# SSH Config (~/.ssh/config) for easy access
+Host hackday-lab
+    HostName 10.10.61.146
+    User asdf
+    ProxyJump root-agent@100.107.182.15
+
+# Then simply:
+ssh hackday-lab
+```
+
+### Access URLs
+
+| Service | URL |
+|---------|-----|
+| Homepage | http://10.10.61.146 |
+| Admin Portal | http://10.10.61.146/ptpetho-admin |
+| Cookie Logger | http://10.10.61.146:8000 |
+
+### Quick Deploy
+
+```bash
+# On Lab VM
+cd ~/HackDAYsummerWEB
+git pull
+docker-compose up -d
+```
 
 ---
 
@@ -89,6 +157,11 @@ HACKDAY-LAB/
 │
 ├── src/                         # Application source code
 │   ├── index.php               # Public homepage
+│   ├── about.php               # About us page
+│   ├── services.php            # Services page
+│   ├── news.php                # News page
+│   ├── contact.php             # Contact page
+│   ├── careers.php             # Careers page
 │   ├── upgrade.php             # Upgrade page (Challenge 2)
 │   ├── verify.php              # QA verify page (Challenge 3)
 │   │
@@ -332,6 +405,11 @@ volumes:
 
 ### Public Pages
 - [x] index.php - Homepage with hidden comments
+- [x] about.php - About us page
+- [x] services.php - Services page
+- [x] news.php - News page
+- [x] contact.php - Contact page
+- [x] careers.php - Careers page
 - [x] upgrade.php - Tier upgrade form
 - [x] verify.php - QA verification page
 - [x] api/internal/config.json - Exposed config
@@ -369,8 +447,8 @@ volumes:
 
 ### Testing
 - [ ] Test all 10 challenges work correctly
-- [ ] Test Docker deployment
-- [ ] Test on Ubuntu VM
+- [x] Test Docker deployment
+- [x] Test on Ubuntu VM (hackdayweb - 10.10.61.146)
 
 ---
 
@@ -423,5 +501,5 @@ Challenges designed to teach: Web Security, SQLi, XSS, Session Management
 
 ---
 
-*Last Updated: 2026-04-17*
-*Version: 1.0.0*
+*Last Updated: 2026-04-18*
+*Version: 1.1.0*
