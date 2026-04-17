@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # Main Web Application (PHP + Apache)
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ptpetho-web
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html:rw
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_NAME=ptpetho_internal
+      - DB_USER=ptpetho
+      - DB_PASS=ptpetho_secret
+    networks:
+      - ptpetho-network
+    restart: unless-stopped
+
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: ptpetho-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_secret_2026
+      MYSQL_DATABASE: ptpetho_internal
+      MYSQL_USER: ptpetho
+      MYSQL_PASSWORD: ptpetho_secret
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - ptpetho-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_secret_2026"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Cookie Logger (for XSS demo)
+  logger:
+    image: php:8.1-apache
+    container_name: ptpetho-logger
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src/logger:/var/www/html:rw
+    networks:
+      - ptpetho-network
+    restart: unless-stopped
+
+  # phpMyAdmin (optional - for debugging)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: ptpetho-pma
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: ptpetho
+      PMA_PASSWORD: ptpetho_secret
+    depends_on:
+      - db
+    networks:
+      - ptpetho-network
+    restart: unless-stopped
+    profiles:
+      - debug
+
+networks:
+  ptpetho-network:
+    driver: bridge
+
+volumes:
+  db_data:
+    name: ptpetho-db-data

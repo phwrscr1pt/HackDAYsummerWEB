@@ -1,0 +1,54 @@
+{
+  "application": "PTPetho Internal Portal",
+  "version": "2.1.0",
+  "environment": "production",
+  "debug_mode": true,
+  "build_date": "2569-03-01",
+
+  "database": {
+    "engine": "MySQL",
+    "version": "8.0.32",
+    "host": "db.internal.ptpetho.local",
+    "charset": "utf8mb4"
+  },
+
+  "server": {
+    "type": "Apache",
+    "version": "2.4.54",
+    "os": "Ubuntu 22.04 LTS",
+    "php_version": "8.1.12"
+  },
+
+  "admin_portal": "/ptpetho-admin",
+  "api_endpoint": "/api/v2",
+
+  "access_policy": {
+    "restriction": "internal_network_only",
+    "trusted_header": "X-Forwarded-For",
+    "trusted_referrer": "ptpetho-sso.local",
+    "allowed_ips": ["192.168.0.0/16", "10.0.0.0/8", "172.16.0.0/12"],
+    "note": "legacy config — SSO migration incomplete"
+  },
+
+  "security": {
+    "csrf_enabled": false,
+    "session_timeout": 3600,
+    "password_policy": "md5",
+    "audit_logging": true
+  },
+
+  "features": {
+    "staff_search": true,
+    "feedback_system": true,
+    "fuel_analysis": true,
+    "api_access": true
+  },
+
+  "contacts": {
+    "dev_ops": "dev-ops@ptpetho.local",
+    "security": "security@ptpetho.local",
+    "support": "support@ptpetho.local"
+  },
+
+  "_comment": "This config should not be publicly accessible. TODO: Move to environment variables."
+}

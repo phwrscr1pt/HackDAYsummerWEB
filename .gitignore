@@ -1,0 +1,43 @@
+# Environment
+.env
+*.local
+
+# Dependencies
+node_modules/
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+
+# Database dumps (keep init.sql)
+*.sql.gz
+*.dump
+
+# Temporary files
+tmp/
+temp/
+cache/
+
+# Uploaded files (if any)
+uploads/*
+!uploads/.gitkeep
+
+# Sensitive
+*.pem
+*.key
+secrets/
