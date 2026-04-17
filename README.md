@@ -91,11 +91,11 @@ open http://localhost
 ### Flags
 
 ```
-FLAG 1: FLAG{h34d3r_trust_1ssu3}
-FLAG 2: FLAG{uni0n_b4s3d_extr4ct10n}
-FLAG 3: FLAG{f1lt3r_byp4ss_succ3ss}
-FLAG 4: FLAG{st0r3d_xss_c00k13_th3ft}
-FLAG 5: FLAG{s3ss10n_h1j4ck_truth_r3v34l3d}
+FLAG 1: SMC{h34d3r_trust_1ssu3}
+FLAG 2: SMC{uni0n_b4s3d_extr4ct10n}
+FLAG 3: SMC{f1lt3r_byp4ss_succ3ss}
+FLAG 4: SMC{st0r3d_xss_c00k13_th3ft}
+FLAG 5: SMC{s3ss10n_h1j4ck_truth_r3v34l3d}
 ```
 
 ### Reset Database

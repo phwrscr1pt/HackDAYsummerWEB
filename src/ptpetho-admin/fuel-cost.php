@@ -80,7 +80,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
 
 <!-- FLAG 5 -->
 <div class="alert alert-success" style="margin-bottom: 1.5rem; text-align: center; padding: 1.5rem;">
-    <h3 style="margin: 0 0 0.5rem;">🚩 FLAG 5: FLAG{s3ss10n_h1j4ck_truth_r3v34l3d}</h3>
+    <h3 style="margin: 0 0 0.5rem;">🚩 FLAG 5: SMC{s3ss10n_h1j4ck_truth_r3v34l3d}</h3>
     <p style="margin: 0;">Congratulations! You successfully hijacked the CEO session and accessed classified data!</p>
 </div>
 

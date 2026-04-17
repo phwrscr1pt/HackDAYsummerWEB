@@ -63,7 +63,7 @@ if (!empty($searchTerm)) {
 <!-- FLAG 2 Display -->
 <?php if ($showFlag): ?>
 <div class="alert alert-success" style="margin-bottom: 1.5rem;">
-    <strong>🚩 FLAG 2: FLAG{uni0n_b4s3d_extr4ct10n}</strong>
+    <strong>🚩 FLAG 2: SMC{uni0n_b4s3d_extr4ct10n}</strong>
     <p style="margin: 0.5rem 0 0;">Congratulations! You successfully extracted data using SQL Injection.</p>
 </div>
 <?php endif; ?>

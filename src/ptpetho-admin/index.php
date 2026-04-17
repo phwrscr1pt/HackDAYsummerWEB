@@ -154,7 +154,7 @@ if ($accessAllowed && $_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- FLAG 1 appears here when access is granted -->
             <?php if ($isInternal && $hasValidReferer): ?>
             <div style="margin-top: 1.5rem; background: rgba(40, 167, 69, 0.1); border: 1px solid var(--success); border-radius: 8px; padding: 1rem; text-align: center;">
-                <strong style="color: var(--success);">🚩 FLAG 1: FLAG{h34d3r_trust_1ssu3}</strong>
+                <strong style="color: var(--success);">🚩 FLAG 1: SMC{h34d3r_trust_1ssu3}</strong>
                 <p style="margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--medium-gray);">
                     Access granted! You bypassed the header checks.
                 </p>

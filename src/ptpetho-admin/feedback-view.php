@@ -52,7 +52,7 @@ $hasXSSPayload = (
 <!-- FLAG 4 Display (if XSS detected) -->
 <?php if ($hasXSSPayload): ?>
 <div class="alert alert-success" style="margin-bottom: 1.5rem;">
-    <strong>🚩 FLAG 4: FLAG{st0r3d_xss_c00k13_th3ft}</strong>
+    <strong>🚩 FLAG 4: SMC{st0r3d_xss_c00k13_th3ft}</strong>
     <p style="margin: 0.5rem 0 0;">Stored XSS payload detected in feedback message!</p>
 </div>
 <?php endif; ?>
